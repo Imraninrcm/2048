@@ -7,7 +7,7 @@ Welcome to the **2048 Game** – a modern, responsive, and addictive puzzle game
 ## 🧩 What is 2048?
 
 2048 is a single-player sliding block puzzle game. The objective is simple: **combine tiles with the same number to reach the 2048 tile!**  
-Swipe or use arrow keys to move all tiles. When two tiles with the same number touch, they merge into one. The game ends when no moves are left.
+Swipe or use the on-screen arrow buttons to move all tiles. When two tiles with the same number touch, they merge into one. The game ends when no moves are left or you reach the 2048 tile.
 
 ---
 
@@ -15,33 +15,38 @@ Swipe or use arrow keys to move all tiles. When two tiles with the same number t
 
 - **Beautiful, modern design**
 - **Responsive layout** – play on any device (desktop, tablet, mobile)
-- **Touch controls** – swipe to play on touch screens
+- **Touch controls** – swipe or tap arrow buttons to play on touch screens
+- **On-screen arrow controls** – play without a keyboard
 - **Smooth animations** and sound effects
 - **Score tracking**
 - **Restart and reset buttons**
+- **Win detection** – special sound and alert when you reach the 2048 tile
+- **Game Over detection** – sound and alert when no moves are left
 
 ---
 
 ## 🚀 How to Play
 
 1. **Start the game** by clicking the **Start** button.
-2. **Move tiles** using arrow keys (desktop) or swipe gestures (mobile).
+2. **Move tiles** using the on-screen arrow buttons or swipe gestures (mobile/tablet).
 3. **Combine tiles** with the same number to create larger numbers.
 4. **Reach 2048** to win!
+   - When you reach the 2048 tile, you'll hear a victory sound and see a congratulatory message.
 5. **Game Over** when no moves are possible.
+   - You'll hear a game over sound and see your score.
 
 ---
 
 ## 📱 Controls
 
-- **Desktop:** Use arrow keys ← ↑ → ↓
-- **Mobile/Tablet:** Swipe in any direction
+- **Desktop:** Use the on-screen arrow buttons (keyboard optional)
+- **Mobile/Tablet:** Swipe in any direction or tap the arrow buttons
 
 ---
 
 ## 🖼️ Screenshots
 
-![2048 Screenshot](./assets/2048_screenshot.png)
+![2048 Screenshot](./assets/image.png)
 
 ---
 

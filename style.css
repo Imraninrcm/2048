@@ -169,6 +169,51 @@ button:focus {
   color: #fff;
 }
 
+.remote-button {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  background: radial-gradient(circle, #d7e8f7 60%, #a5bfd9 100%);
+  border: 6px solid #5a7a9c;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.arrow {
+  position: absolute;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 3px solid #5a7a9c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #0f3e7c;
+  cursor: pointer;
+  background: transparent;
+}
+
+.up {
+  top: 8px;
+}
+
+.down {
+  bottom: 8px;
+}
+
+.left {
+  left: 8px;
+}
+
+.right {
+  right: 8px;
+}
+
 /* Responsive styles */
 @media (max-width: 600px) {
   h1 {

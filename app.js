@@ -21,13 +21,13 @@ start.addEventListener("click", () => {
     boardElement.removeChild(boardElement.firstChild);
   }
   setGame();
-  instruction.innerText = "Click reset any time to fresh start the game";
+  instruction.innerText = "Click reset any time to  ReStart the game";
 });
 
 reset.addEventListener("click", () => {
   sound("./sounds/buttonClick.mp3");
   resetGame();
-  instruction.innerText = "Click start to play";
+  instruction.innerText = "Click Start to play";
 });
 
 function setGame() {
@@ -57,11 +57,15 @@ function updateTile(tile, num) {
   tile.classList.value = ""; //clear the classList
   tile.classList.add("tile");
   if (num > 0) {
-    tile.innerText = num.toString();
-    if (num <= 4096) {
-      tile.classList.add("x" + num.toString());
-    } else {
-      tile.classList.add("x8192");
+    tile.innerText = num;
+    tile.classList.add("x" + num);
+    // Check for win condition
+    if (num === 2048 && !tile.classList.contains("win-announced")) {
+      tile.classList.add("win-announced");
+      sound("./sounds/gameWin.mp3");
+      setTimeout(() => {
+        alert("🎉 Congratulations! You successfully completed the 2048 tile!");
+      }, 400);
     }
   }
 }
@@ -237,19 +241,15 @@ function slideDown() {
 }
 
 function setTwo() {
-  if (!hasEmptyTile()) {
-    return;
-  }
+  if (!hasEmptyTile()) return;
   let found = false;
   while (!found) {
-    //find random row and column to place a 2 in
     let r = Math.floor(Math.random() * rows);
     let c = Math.floor(Math.random() * columns);
     if (board[r][c] == 0) {
       board[r][c] = 2;
-      let tile = document.getElementById(r.toString() + "-" + c.toString());
-      tile.innerText = "2";
-      tile.classList.add("x2");
+      let tile = document.getElementById(r + "-" + c);
+      updateTile(tile, 2);
       found = true;
     }
   }
@@ -326,3 +326,52 @@ function resetGame() {
     boardElement.removeChild(boardElement.firstChild);
   }
 }
+
+// Arrow button controls for playing without keyboard
+document.getElementById("up").addEventListener("click", () => {
+  let moved = slideUp();
+  if (moved) {
+    sound("./sounds/tileMerge.mp3");
+    setTwo();
+    document.getElementById("score").innerText = score;
+  }
+  if (!hasEmptyTile() && noPossibleMoves()) {
+    gameOver();
+  }
+});
+
+document.getElementById("down").addEventListener("click", () => {
+  let moved = slideDown();
+  if (moved) {
+    sound("./sounds/tileMerge.mp3");
+    setTwo();
+    document.getElementById("score").innerText = score;
+  }
+  if (!hasEmptyTile() && noPossibleMoves()) {
+    gameOver();
+  }
+});
+
+document.getElementById("left").addEventListener("click", () => {
+  let moved = slideLeft();
+  if (moved) {
+    sound("./sounds/tileMerge.mp3");
+    setTwo();
+    document.getElementById("score").innerText = score;
+  }
+  if (!hasEmptyTile() && noPossibleMoves()) {
+    gameOver();
+  }
+});
+
+document.getElementById("right").addEventListener("click", () => {
+  let moved = slideRight();
+  if (moved) {
+    sound("./sounds/tileMerge.mp3");
+    setTwo();
+    document.getElementById("score").innerText = score;
+  }
+  if (!hasEmptyTile() && noPossibleMoves()) {
+    gameOver();
+  }
+});

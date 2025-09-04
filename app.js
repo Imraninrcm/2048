@@ -304,7 +304,7 @@ function gameOver() {
   setTimeout(() => {
     alert("Game Over! Your score is: " + score);
     resetGame();
-  }, 400); // Wait 400ms for sound to play
+  }, 1000); // Wait 400ms for sound to play
 }
 
 function resetGame() {

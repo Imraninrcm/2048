@@ -1,119 +1,192 @@
+/* Reset and base styles */
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e9d8fd 100%);
+  min-height: 100vh;
+  margin: 0;
   text-align: center;
+  color: #4b3869;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-top: 2rem;
+  letter-spacing: 2px;
+  color: #7c3aed;
+  text-shadow: 0 2px 8px #e9d8fd;
 }
 
 hr {
-  width: 500px;
+  width: 80%;
+  max-width: 500px;
+  border: none;
+  border-top: 2px solid #bbada0;
+  margin: 1.5rem auto;
+}
+
+h3#instruction {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #6d28d9;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#score {
+  font-weight: bold;
+  color: #f59e42;
+  background: #fffbe6;
+  padding: 0.3em 1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 8px #e9d8fd;
+}
+
+#btn {
+  margin: 1.5rem auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 button {
-  width: 80px;
-  height: 30px;
-  font-size: medium;
-  background-color: #bea9ef;
-  border: 1px solid azure;
-  color: beige;
-  border-radius: 5%;
-  margin-right: 25px;
-  margin-left: 25px;
+  width: 110px;
+  height: 40px;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, #a78bfa 0%, #fbc2eb 100%);
+  border: none;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #e9d8fd;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  font-weight: 600;
+  outline: none;
 }
 
-button:hover {
-  box-shadow: 1px 1px 5px rgb(215, 252, 251);
-}
-#btn {
-  margin: auto;
-  padding-bottom: 2%;
+button:hover,
+button:focus {
+  transform: scale(1.07);
+  box-shadow: 0 4px 16px #c4b5fd;
 }
 
 #board {
-  width: 400px;
-  height: 400px;
-
-  background-color: #cdc1b5;
-  border: 6px solid #bbada0;
-
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+  width: 90vw;
+  max-width: 420px;
+  aspect-ratio: 1 / 1;
+  background: #cdc1b5;
+  border: 8px solid #bbada0;
+  margin: 0 auto 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #d1c4e9;
+  position: relative;
 }
 
 .tile {
-  width: 90px;
-  height: 90px;
-  border: 5px solid #bbada0;
-
-  font-size: 40px;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  font-size: 2.2rem;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px #e9d8fd;
+  user-select: none;
+  animation: pop 0.18s;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* colored tiles */
-
 .x2 {
-  background-color: #eee4da;
+  background: #eee4da;
   color: #727371;
 }
-
 .x4 {
-  background-color: #ece0ca;
+  background: #ece0ca;
   color: #727371;
 }
-
 .x8 {
-  background-color: #f4b17a;
-  color: white;
+  background: #f4b17a;
+  color: #fff;
 }
-
 .x16 {
-  background-color: #f59575;
-  color: white;
+  background: #f59575;
+  color: #fff;
 }
-
 .x32 {
-  background-color: #f57c5f;
-  color: white;
+  background: #f57c5f;
+  color: #fff;
 }
-
 .x64 {
-  background-color: #f65d3b;
-  color: white;
+  background: #f65d3b;
+  color: #fff;
 }
-
 .x128 {
-  background-color: #edce71;
-  color: white;
+  background: #edce71;
+  color: #fff;
 }
-
 .x256 {
-  background-color: #edcc63;
-  color: white;
+  background: #edcc63;
+  color: #fff;
 }
-
 .x512 {
-  background-color: #edc651;
-  color: white;
+  background: #edc651;
+  color: #fff;
 }
-
 .x1024 {
-  background-color: #eec744;
-  color: white;
+  background: #eec744;
+  color: #fff;
 }
-
 .x2048 {
-  background-color: #ecc230;
-  color: white;
+  background: #ecc230;
+  color: #fff;
 }
-
 .x4096 {
-  background-color: #fe3d3d;
-  color: white;
+  background: #fe3d3d;
+  color: #fff;
+}
+.x8192 {
+  background: #ff2020;
+  color: #fff;
 }
 
-.x8192 {
-  background-color: #ff2020;
-  color: white;
+/* Responsive styles */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  #board {
+    max-width: 98vw;
+    gap: 5px;
+  }
+  .tile {
+    font-size: 1.3rem;
+  }
+  button {
+    width: 90px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  hr {
+    width: 95%;
+  }
 }

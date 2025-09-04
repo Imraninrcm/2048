@@ -7,8 +7,14 @@ const start = document.querySelector("#start");
 const reset = document.querySelector("#reset");
 const instruction = document.querySelector("#instruction");
 
+function sound(src) {
+  const audio = new Audio();
+  audio.src = src;
+  audio.play();
+}
+
 start.addEventListener("click", () => {
-  sound("buttonClick.mp3");
+  sound("./sounds/buttonClick.mp3");
   // Clear the existing board
   const boardElement = document.getElementById("board");
   while (boardElement.firstChild) {
@@ -19,7 +25,7 @@ start.addEventListener("click", () => {
 });
 
 reset.addEventListener("click", () => {
-  sound("buttonClick.mp3");
+  sound("./sounds/buttonClick.mp3");
   resetGame();
   instruction.innerText = "Click start to play";
 });
@@ -73,13 +79,57 @@ document.addEventListener("keyup", (e) => {
   }
 
   if (moved) {
-    sound("tileMerge.mp3");
+    sound("./sounds/tileMerge.mp3");
     setTwo();
     document.getElementById("score").innerText = score;
   }
 
   if (!hasEmptyTile() && noPossibleMoves()) {
     gameOver();
+  }
+});
+
+// Touch controls for mobile devices
+let touchStartX = 0;
+let touchStartY = 0;
+
+const boardDiv = document.getElementById("board");
+
+boardDiv.addEventListener("touchstart", function (e) {
+  if (e.touches.length === 1) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+});
+
+boardDiv.addEventListener("touchend", function (e) {
+  if (e.changedTouches.length === 1) {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+
+    let moved = false;
+    if (Math.max(absDx, absDy) > 30) {
+      // Minimum swipe distance
+      if (absDx > absDy) {
+        if (dx > 0) moved = slideRight();
+        else moved = slideLeft();
+      } else {
+        if (dy > 0) moved = slideDown();
+        else moved = slideUp();
+      }
+    }
+
+    if (moved) {
+      sound("./sounds/tileMerge.mp3");
+      setTwo();
+      document.getElementById("score").innerText = score;
+    }
+
+    if (!hasEmptyTile() && noPossibleMoves()) {
+      gameOver();
+    }
   }
 });
 
@@ -250,9 +300,11 @@ function noPossibleMoves() {
 }
 
 function gameOver() {
-  sound("gameOver.mp3");
-  alert("Game Over! Your score is: " + score);
-  resetGame();
+  sound("./sounds/gameOver.mp3");
+  setTimeout(() => {
+    alert("Game Over! Your score is: " + score);
+    resetGame();
+  }, 400); // Wait 400ms for sound to play
 }
 
 function resetGame() {
@@ -273,10 +325,4 @@ function resetGame() {
   while (boardElement.firstChild) {
     boardElement.removeChild(boardElement.firstChild);
   }
-}
-
-function sound(src) {
-  const audio = new Audio();
-  audio.src = src;
-  audio.play();
 }
